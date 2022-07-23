@@ -40,12 +40,10 @@ class MetacomChunk {
     chunkView.set(streamIdView);
     chunkView.set(deliveryStatus, STREAM_ID_LENGTH);
     chunkView.set(payload, STREAM_ID_LENGTH + DELIVERY_STATUS_LENGTH);
-    // console.log('enc, chunkView =', chunkView)
     return chunkView;
   }
 
   static decode(chunkView) {
-    // console.log('chunkView dec', chunkView.length)
     const streamId = getStreamId(chunkView.buffer);
     const deliveryStatus = getDeliveryStatus(chunkView.buffer);
     const payload = chunkView.subarray(
